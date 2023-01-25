@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+
+<h1>{{Post.title}} </h1>
+
+<h2>{{Post.content}}</h2>
+
+<h5>By: {{Post.use.first_name}} {{Post.use.last_name}}</h5>
+
+<form action = "/users/{{ Post.user_id }}">
+    <button type = 'submit'>Cancel</button>
+</form>
+
+<form action = "/posts/{{ Post.id }}/edit">
+    <button type = 'submit'>Edit</button>
+</form>
+
+<form action = "/posts/{{ Post.id }}/delete">
+    <button type = 'submit'>Delete</button>
+</form>
+
+
+
+{% for msg in get_flashed_messages() %}
+    <p>{{msg }}</p>
+{% endfor %}
+
+{% endblock %}

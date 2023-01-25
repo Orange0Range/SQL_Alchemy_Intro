@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Create a user{% endblock %}
+{% block title %}User{% endblock %}
 
 {% block content %}
 
 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
 <img src= {{user.image_url}} alt="Test" style="width:250px;height:250px;"><br>
+
+{% if flag%}
+<h2>Posts</h2>
+
+{% for post in posts%}
+<h3><a href="/posts/{{post.id}}">{{post.title}}</a></h3>
+{%endfor%}
+
+{%endif%}
 
 <form action = "/users/{{ user.id }}/edit">
     <button type = 'submit'>Edit</button>
@@ -13,6 +22,10 @@
 
 <form action = "/users/{{ user.id }}/delete">
     <button type = 'submit'>Delete</button>
+</form>
+
+<form action = "/users/{{ user.id }}/posts/new">
+    <button type = 'submit'>Add Post</button>
 </form>
 
 <a href="/">Back</a>

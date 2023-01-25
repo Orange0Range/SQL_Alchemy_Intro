@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a Post for {{user.first_name}}{% endblock %}
+
+{% block content %}
+
+<h1>Create Post</h1>
+<form action = "/users/{{ user.id }}/posts/new" method = "POST">
+    <label for = "title">Title: </label>
+    <input type = 'text' id = "title" name = "title" placeholder = "Enter Title"><br><br>
+    <label for = "content">Content: </label>
+    <input type = 'text' id = "content" name = "content" placeholder = "Enter here..."><br><br>
+
+    <button type = 'submit'>Add</button>
+    
+</form>
+
+<form action = "/users/{{ user.id }}">
+    <button type = 'submit'>Cancel</button>
+</form>
+
+{% for msg in get_flashed_messages() %}
+    <p>{{msg }}</p>
+{% endfor %}
+
+{% endblock %}
